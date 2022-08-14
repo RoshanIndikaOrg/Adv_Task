@@ -1,4 +1,5 @@
-﻿using MARS_ADV_Task.Utilities;
+﻿using AutoItX3Lib;
+using MARS_ADV_Task.Utilities;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using System.Collections.Generic;
@@ -121,11 +122,6 @@ namespace MARS_ADV_Task.Pages
         public void ManageSkills()
         {
 
-            Wait.WaitForvisible(driver, "XPath", "/html/body/div[1]/a", 4);
-            errormsg.Click();
-
-       //     Thread.Sleep(3000);
-
             Wait.WaitForclicable(driver, "CssSelector", "#account-profile-section > div > section.nav-secondary > div > div.right.item > a", 4);
             shareSkillbutton.Click();
 
@@ -194,15 +190,15 @@ namespace MARS_ADV_Task.Pages
             skillExchangeTag.SendKeys("Costing");
             skillExchangeTag.SendKeys(Keys.Enter);
 
-            /* workSampleBtn.Click();
+             /*workSampleBtn.Click();
              AutoItX3 autoIt = new AutoItX3();
              autoIt.WinActivate("Open");
              Thread.Sleep(1000);
-             autoIt.Send(@"C: \Users\rosha\source\repos\Roshanindika1\POM Test\MARSQA2\MARSQA2\MARS Project.pdf");
+             autoIt.Send(@"C:\Users\rosha\source\repos\Roshanindika1\Advance Task\Adv_Task\MARS ADV Task SpecFlow\Adv_Task\MARS ADV Task\MARS ADV Task\Data\Data Sheet.docx");
              Thread.Sleep(1000);
              autoIt.Send("{ Enter}");
-             Thread.Sleep(1000);
-            */
+             Thread.Sleep(1000);*/
+            
 
             activeRadioBtn.ToList();
             activeRadioBtn[1].Click();

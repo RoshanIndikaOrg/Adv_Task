@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 
-
 namespace MARS_ADV_Task.Pages
 {
     internal class Homepage

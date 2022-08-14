@@ -6,7 +6,6 @@ using DataTable = System.Data.DataTable;
 namespace MARS_ADV_Task.Pages
 {
     internal class Loginpage : Commondriver
-    
     {
         [FindsBy(How = How.Name, Using = "email")]
         public IWebElement emailAddress { get; set; }
@@ -16,16 +15,25 @@ namespace MARS_ADV_Task.Pages
 
         [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/div/div[1]/div/div[4]/button")]
         public IWebElement loginButton { get; set; }
-
+       
+        [FindsBy(How = How.XPath, Using = "//*[@id='home']/div/div/div[1]/div/a")]
+        public IWebElement signInButton { get; set; }
         public void Loginsteps()
         {
+            //Open Mars web page
+            driver.Navigate().GoToUrl("http://localhost:5000/");
+
+            var Homepageobj = new Homepage();
+            PageFactory.InitElements(driver, Homepageobj);
+
+            Wait.WaitForvisible(driver, "XPath", "//*[@id='home']/div/div/div[1]/div/a", 3);
+            signInButton.Click();
             readCredential();
             loginButton.Click();
         }
 
         public void readCredential()
         {
-
             DataReaderExcel reader = new DataReaderExcel();
             DataTable dt = reader.readData();
             int i = 2;
@@ -33,7 +41,6 @@ namespace MARS_ADV_Task.Pages
             Wait.WaitForvisible(driver, "XPath", "/html/body/div[2]/div/div/div[1]/div/div[1]/input", 4);
             emailAddress.SendKeys(dt.Rows[i][0].ToString());
             passWord.SendKeys(dt.Rows[i][1].ToString());
-           
         }
     }
 }
