@@ -31,22 +31,25 @@ namespace MARS_ADV_Task.Pages
         [FindsBy(How = How.XPath, Using = "/html/body/div[1]/a")]
         public IWebElement errormsg { get; set; }
 
-    //    [FindsBy(How = How.XPath, Using = "/html/body/div[1]/div")]
-   //     public IWebElement errormsg2 { get; set; }
+        //    [FindsBy(How = How.XPath, Using = "/html/body/div[1]/div")]
+        //     public IWebElement errormsg2 { get; set; }
 
+        string errorMsgx = "/html/body/div[1]/a";
+        string hiNameElmx = "#account-profile-section > div > div.ui.secondary.menu > div.right.item > div > span";
+        string chngPWElmx = "/html/body/div[1]/div/div[1]/div[2]/div/span/div/a[2]";
 
         public void ChangePassword()
         {
             jse.ExecuteScript("window.scrollBy(0,-200)");
 
-            Wait.WaitForvisible(driver, "CssSelector", "/html/body/div[1]/a", 2);
+            Wait.WaitForvisible(driver, "CssSelector",errorMsgx , 2);
             errormsg.Click();
           //  errormsg2.Click();
             Thread.Sleep(3000);
 
-            Wait.WaitForvisible(driver, "CssSelector", "#account-profile-section > div > div.ui.secondary.menu > div.right.item > div > span", 2);
+            Wait.WaitForvisible(driver, "CssSelector", hiNameElmx, 2);
             hiNameElm.Click();
-            Wait.WaitForclicable(driver, "XPath", "/html/body/div[1]/div/div[1]/div[2]/div/span/div/a[2]", 2);
+            Wait.WaitForclicable(driver, "XPath",chngPWElmx , 2);
             chngPW.Click();
                         
             readCredentialPW();

@@ -40,6 +40,11 @@ namespace MARS_ADV_Task.Pages
         [FindsBy(How = How.CssSelector, Using = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.four.wide.column > div > div > div > div > div > div.extra.content > div > div:nth-child(4) > div > span > select > option:nth-child(2)")]
         public IWebElement earnTgtOpt2 { get; set; }
 
+        string availabilityx = "/html/body/div[1]/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[2]/div/span/i";
+        string hoursx = "/html/body/div[1]/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[3]/div/span/i";
+        string hoursOpt2x = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.four.wide.column > div > div > div > div > div > div.extra.content > div > div:nth-child(3) > div > span > select > option:nth-child(4)";
+        string earnTgtx = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.four.wide.column > div > div > div > div > div > div.extra.content > div > div:nth-child(4) > div > span > i";
+        string earntgtOpt2x = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.four.wide.column > div > div > div > div > div > div.extra.content > div > div:nth-child(4) > div > span > select > option:nth-child(2)";
 
 
         public void Profilemanageloc()
@@ -47,30 +52,32 @@ namespace MARS_ADV_Task.Pages
             Thread.Sleep(1000);
             jse.ExecuteScript("window.scrollBy(0,200)");
             
-            Wait.WaitForclicable(driver, "XPath", "/html/body/div[1]/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[2]/div/span/i", 2);
+            Wait.WaitForclicable(driver, "XPath", availabilityx , 2);
             availability.Click();
             availabilityOpt.Click();
             availabilityOpt2.Click();
 
-            Wait.WaitForclicable(driver, "XPath", "/html/body/div[1]/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[3]/div/span/i", 2);
+            Wait.WaitForclicable(driver, "XPath", hoursx, 2);
             hours.Click();
             hoursOpt.Click();
-            Wait.WaitForclicable(driver, "CssSelector", "#account-profile-section > div > section:nth-child(3) > div > div > div > div.four.wide.column > div > div > div > div > div > div.extra.content > div > div:nth-child(3) > div > span > select > option:nth-child(4)", 2);
+            Wait.WaitForclicable(driver, "CssSelector", hoursOpt2x, 2);
             hoursOpt2.Click();
 
-            Wait.WaitForclicable(driver, "CssSelector", "#account-profile-section > div > section:nth-child(3) > div > div > div > div.four.wide.column > div > div > div > div > div > div.extra.content > div > div:nth-child(4) > div > span > i", 2);
+            Wait.WaitForclicable(driver, "CssSelector", earnTgtx , 2);
             earnTgt.Click();
             earnTgtOpt.Click();
-            Wait.WaitForclicable(driver, "CssSelector", "#account-profile-section > div > section:nth-child(3) > div > div > div > div.four.wide.column > div > div > div > div > div > div.extra.content > div > div:nth-child(4) > div > span > select > option:nth-child(2)", 2);
+            Wait.WaitForclicable(driver, "CssSelector", earntgtOpt2x , 2);
             earnTgtOpt2.Click();
         }
 
         [FindsBy(How = How.CssSelector, Using = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.four.wide.column > div > div > div > div > div > div.extra.content > div > div:nth-child(2) > div > span")]
         public IWebElement actualavailability { get; set; }
 
+        string actualavailabilityx = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.four.wide.column > div > div > div > div > div > div.extra.content > div > div:nth-child(2) > div > span";
+
         public string Getavailability(IWebDriver driver)
         {
-            Wait.WaitForvisible(driver, "CssSelector", "#account-profile-section > div > section:nth-child(3) > div > div > div > div.four.wide.column > div > div > div > div > div > div.extra.content > div > div:nth-child(2) > div > span", 2);
+            Wait.WaitForvisible(driver, "CssSelector", actualavailabilityx , 2);
             return actualavailability.Text;
         }
 

@@ -6,7 +6,7 @@ using System;
 
 namespace MARS_ADV_Task.Utilities
 {
-    public class Wait : Commondriver
+    public class Wait 
     {
         public static void WaitForclicable(IWebDriver driver, string locator, string locatorValue, int seconds)
         {

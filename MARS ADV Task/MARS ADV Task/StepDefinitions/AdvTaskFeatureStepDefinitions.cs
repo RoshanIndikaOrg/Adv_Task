@@ -11,29 +11,26 @@ namespace MARS_ADV_Task.StepDefinitions
     [Binding]
     public class AdvTaskFeatureStepDefinitions : Commondriver
     {
-        [Given(@"\[I log in to the MAR QA website successfully]")]
+        [Given(@"I log in to the MAR QA website successfully")]
+
         public void GivenILogInToTheMARQAWebsiteSuccessfully()
         {
-            //Open chromedriver
-            driver = new ChromeDriver();
+            driver = new ChromeDriver(); 
             driver.Manage().Window.Maximize();
-
-            //Login page object initializing and defining
-            var Loginpage = new Loginpage();
+            Loginpage Loginpage = new Loginpage();
             PageFactory.InitElements(driver, Loginpage);
             Loginpage.Loginsteps();
         }
 
-        [When(@"\[I want to add Profile details]")]
+        [When(@"I want to add Profile details")]
         public void WhenIWantToAddProfileDetails()
         {
-            // Profile page object initializing and defining
-            var Profilepageloc  = new Profilepageloc();
+            Profilepageloc Profilepageloc = new Profilepageloc();
             PageFactory.InitElements(driver, Profilepageloc);
             Profilepageloc.Profilemanageloc();
         }
 
-        [Then(@"\[The Profile Location data should be created successfully]")]
+        [Then(@"The Profile Location data should be created successfully")]
         public void ThenTheProfileLocationDataShouldBeCreatedSuccessfully()
         {
             Profilepageloc Profilepagelocobj = new Profilepageloc();
@@ -44,157 +41,166 @@ namespace MARS_ADV_Task.StepDefinitions
         }
 
 
-        [Given(@"\[I log in to the MAR QA website successfully for add language]")]
+        [Given(@"I log in to the MAR QA website successfully for add language")]
         public void GivenILogInToTheMARQAWebsiteSuccessfullyForAddLanguage()
         {
-            //Open chromedriver
-            driver = new ChromeDriver();
+            driver = new ChromeDriver(); 
             driver.Manage().Window.Maximize();
-
-            //Login page object initializing and defining
-            var Loginpage = new Loginpage();
+            Loginpage Loginpage = new Loginpage(); 
             PageFactory.InitElements(driver, Loginpage);
             Loginpage.Loginsteps();
         }
 
-        [When(@"\[I want to add Language details]")]
-        public void WhenIWantToAddLanguageDetails()
+        [When(@"I want to add '([^']*)' and '([^']*)' details")]
+        public void WhenIWantToAddAndDetails(string p1, string p2)
         {
-            var ManageLanguage = new ManageLanguage();
+            ManageLanguage ManageLanguage = new ManageLanguage();
             PageFactory.InitElements(driver, ManageLanguage);
-            ManageLanguage.addLanguage();
+            ManageLanguage.addLanguage(p1, p2);
         }
 
-
-        [Then(@"\[The Language data should be created successfully]")]
-        public void ThenTheLanguageDataShouldBeCreatedSuccessfully()
+        [Then(@"The Language data should be created successfully '([^']*)' and '([^']*)' details")]
+        public void ThenTheLanguageDataShouldBeCreatedSuccessfullyAndDetails(string p1, string p2)
         {
             ManageLanguage ManageLanguageObj = new ManageLanguage();
             PageFactory.InitElements(driver, ManageLanguageObj);
+
             string newLanguage = ManageLanguageObj.GetLanguage(driver);
-            Assert.That(newLanguage == "Spanish", "Actual language and Expected language does not match");
+            string newLevel = ManageLanguageObj.GetlanguageLevelDropdown(driver);
+            
+            Assert.That(newLanguage == p1, "Actual language and Expected language does not match");
+            Assert.That(newLevel == p2, "Actual Level and Expected Level does not match");
             driver.Close();
         }
 
-
-
-        [Given(@"\[I log in to the MAR QA website for add skills]")]
+        [Given(@"I log in to the MAR QA website for add skills")]
         public void GivenILogInToTheMARQAWebsiteForAddSkills()
         {
-            //Open chromedriver
-            driver = new ChromeDriver();
+            driver = new ChromeDriver(); 
             driver.Manage().Window.Maximize();
-
-            //Login page object initializing and defining
-            var Loginpage = new Loginpage();
+            Loginpage Loginpage = new Loginpage();
             PageFactory.InitElements(driver, Loginpage);
             Loginpage.Loginsteps();
         }
 
-        [When(@"\[I want to add Skillls details]")]
-        public void WhenIWantToAddSkilllsDetails()
+        [When(@"I want to add '([^']*)' and '([^']*)' details in")]
+        public void WhenIWantToAddAndDetailsIn(string p0, string p1)
         {
-            var Manageskills = new Manageskills();
+            Manageskills Manageskills = new Manageskills();
             PageFactory.InitElements(driver, Manageskills);
-            Manageskills.AddSkills();
+            Manageskills.AddSkills(p0,p1);
         }
 
-        [Then(@"\[The skills records should be created successfully]")]
-        public void ThenTheSkillsRecordsShouldBeCreatedSuccessfully()
+        [Then(@"The skills records should be created successfully '([^']*)' and '([^']*)' details")]
+        public void ThenTheSkillsRecordsShouldBeCreatedSuccessfullyAndDetails(string p0, string p1)
         {
             Manageskills ManageskillsObj = new Manageskills();
             PageFactory.InitElements(driver, ManageskillsObj);
             string newSkill = ManageskillsObj.GetSkills(driver);
-            Assert.That(newSkill == "Designing", "Actual Skill and Expected Skill does not match");
+            string newLevel = ManageskillsObj.GetLevel(driver);
+            
+            Assert.That(newSkill == p0, "Actual Skill and Expected Skill does not match");
+            Assert.That(newLevel == p1, "Actual Skill level and Expected Skill level does not match");
             driver.Close();
         }
 
+      
 
-        [Given(@"\[I log in to the MAR QA website to add education details]")]
+        [Given(@"I log in to the MAR QA website to add education details")]
         public void GivenILogInToTheMARQAWebsiteToAddEducationDetails()
         {
 
-            //Open chromedriver
-            driver = new ChromeDriver();
+            driver = new ChromeDriver(); 
             driver.Manage().Window.Maximize();
-
-            //Login page object initializing and defining
-            var Loginpage = new Loginpage();
+            Loginpage Loginpage = new Loginpage(); 
             PageFactory.InitElements(driver, Loginpage);
             Loginpage.Loginsteps();
         }
-
-        [When(@"\[I want to add the Education details]")]
-        public void WhenIWantToAddTheEducationDetails()
+       
+        
+        [When(@"I want to add '([^']*)','([^']*)','([^']*)' and '([^']*)' details")]
+        public void WhenIWantToAddAndDetails(string p0, string p1, string p2, string p3)
         {
-            var ManageEducation = new ManageEducation();
+            ManageEducation ManageEducation = new ManageEducation();
             PageFactory.InitElements(driver, ManageEducation);
-            ManageEducation.addEducation();
+            ManageEducation.addEducation(p0, p1, p2, p3);
         }
 
-        [Then(@"\[The education records should be created successfully]")]
-        public void ThenTheEducationRecordsShouldBeCreatedSuccessfully()
+        [Then(@"The education records '([^']*)','([^']*)','([^']*)' and '([^']*)' details should be created successfully")]
+        public void ThenTheEducationRecordsAndDetailsShouldBeCreatedSuccessfully(string p0, string p1, string p2, string p3)
         {
             ManageEducation ManageEducationObj = new ManageEducation();
             PageFactory.InitElements(driver, ManageEducationObj);
-            string newEducation = ManageEducationObj.GetEducation(driver);
-            Assert.That(newEducation == "Otago", "Actual Education and Expected Education does not match");
+            string newUniversity = ManageEducationObj.GetUniversity(driver);
+            string newCountry = ManageEducationObj.GetCountry(driver);
+            string newDegree = ManageEducationObj.GetDegree(driver);
+            string newYear = ManageEducationObj.GetYear(driver);
+
+            Assert.That(newUniversity == p1, "Actual University and Expected University does not match");
+            Assert.That(newCountry == p0, "Actual Country and Expected Country does not match");
+            Assert.That(newDegree == p2, "Actual Degree and Expected Degree does not match");
+            Assert.That(newYear == p3, "Actual Year and Expected Year does not match");
             driver.Close();
         }
 
-        [Given(@"\[I log in to the MAR QA website to add Certification details]")]
+
+       
+
+        [Given(@"I log in to the MAR QA website to add Certification details")]
         public void GivenILogInToTheMARQAWebsiteToAddCertificationDetails()
         {
-            //Open chromedriver
             driver = new ChromeDriver();
             driver.Manage().Window.Maximize();
-
-            //Login page object initializing and defining
-            var Loginpage = new Loginpage();
+            Loginpage Loginpage = new Loginpage();
             PageFactory.InitElements(driver, Loginpage);
             Loginpage.Loginsteps();
         }
 
-        [When(@"\[I want to add the Certification details]")]
-        public void WhenIWantToAddTheCertificationDetails()
+        [When(@"I want to add the '([^']*)' , '([^']*)' and '([^']*)' details")]
+        public void WhenIWantToAddTheAndDetails(string p0, string p1, string p2)
         {
-            var ManageCertification = new ManageCertification();
+            ManageCertification ManageCertification = new ManageCertification();
             PageFactory.InitElements(driver, ManageCertification);
-            ManageCertification.AddCertification();
+            ManageCertification.AddCertification(p0,p1,p2);
         }
 
-        [Then(@"\[The Certification records should be created successfully]")]
-        public void ThenTheCertificationRecordsShouldBeCreatedSuccessfully()
+        [Then(@"The Certification records '([^']*)' , '([^']*)' and '([^']*)' should be created successfully")]
+        public void ThenTheCertificationRecordsAndShouldBeCreatedSuccessfully(string p0, string p1, string p2)
         {
             ManageCertification ManageCertificationObj = new ManageCertification();
             PageFactory.InitElements(driver, ManageCertificationObj);
             string newCertification = ManageCertificationObj.GetCertification(driver);
-            Assert.That(newCertification == "Diploma", "Actual Certification and Expected Certification does not match");
-            driver.Close();
+            string newcertified_from = ManageCertificationObj.Getcertified_from(driver);
+            string newyear = ManageCertificationObj.Getyear(driver);
+
+            Assert.That(newCertification == p0, "Actual Certification and Expected Certification does not match");
+            Assert.That(newcertified_from == p1, "Actual certified_from and Expected certified_from does not match");
+            Assert.That(newyear == p2, "Actual year and Expected year does not match");
+           // driver.Close();
         }
 
-        [Given(@"\[I log in to the MAR QA website for add Description]")]
+        
+
+
+        [Given(@"I log in to the MAR QA website for add Description")]
         public void GivenILogInToTheMARQAWebsiteForAddDescription()
         {
-            //Open chromedriver
-            driver = new ChromeDriver();
+            driver = new ChromeDriver(); 
             driver.Manage().Window.Maximize();
-
-            //Login page object initializing and defining
-            var Loginpage = new Loginpage();
+            Loginpage Loginpage = new Loginpage();
             PageFactory.InitElements(driver, Loginpage);
             Loginpage.Loginsteps();
         }
 
-        [When(@"\[I want to add Description details]")]
+        [When(@"I want to add Description details")]
         public void WhenIWantToAddDescriptionDetails()
         {
-            var ManageDescription = new ManageDescription();
+            ManageDescription ManageDescription = new ManageDescription();
             PageFactory.InitElements(driver, ManageDescription);
             ManageDescription.AddDescription();
         }
 
-        [Then(@"\[The description records should be created successfully]")]
+        [Then(@"The description records should be created successfully")]
         public void ThenTheDescriptionRecordsShouldBeCreatedSuccessfully()
         {
             ManageDescription ManageDescriptionObj = new ManageDescription();
@@ -204,28 +210,26 @@ namespace MARS_ADV_Task.StepDefinitions
             driver.Close();
         }
 
-        [Given(@"\[I log in to the MAR QA website to add Share skill data]")]
+
+        [Given(@"I log in to the MAR QA website to add Share skill data")]
         public void GivenILogInToTheMARQAWebsiteToAddShareSkillData()
         {
-            //Open chromedriver
-            driver = new ChromeDriver();
+            driver = new ChromeDriver(); 
             driver.Manage().Window.Maximize();
-
-            //Login page object initializing and defining
-            var Loginpage = new Loginpage();
+            Loginpage Loginpage = new Loginpage();
             PageFactory.InitElements(driver, Loginpage);
             Loginpage.Loginsteps();
         }
 
-        [When(@"\[I want to add the Share skill data]")]
+        [When(@"I want to add the Share skill data")]
         public void WhenIWantToAddTheShareSkillData()
         {
-            var ShareSkills = new ShareSkills();
+            ShareSkills ShareSkills = new ShareSkills();
             PageFactory.InitElements(driver, ShareSkills);
             ShareSkills.ManageSkills();
         }
 
-        [Then(@"\[The Share skill data records should be created successfully]")]
+        [Then(@"The Share skill data records should be created successfully")]
         public void ThenTheShareSkillDataRecordsShouldBeCreatedSuccessfully()
         {
             ShareSkills ShareSkillsObj = new ShareSkills();
@@ -235,67 +239,65 @@ namespace MARS_ADV_Task.StepDefinitions
             driver.Close();
         }
 
-        
-        [Given(@"\[I log in to the MAR QA website to edit details in the managelistings]")]
+
+        [Given(@"I log in to the MAR QA website to edit details in the managelistings")]
         public void GivenILogInToTheMARQAWebsiteToEditDetailsInTheManagelistings()
         {
-            //Open chromedriver
             driver = new ChromeDriver();
             driver.Manage().Window.Maximize();
-
-            //Login page object initializing and defining
-            var Loginpage = new Loginpage();
+            Loginpage Loginpage = new Loginpage();
             PageFactory.InitElements(driver, Loginpage);
             Loginpage.Loginsteps();
         }
 
-        [When(@"\[I want to edit the data in the managelistings]")]
-        public void WhenIWantToEditTheDataInTheManagelistings()
+
+        [When(@"I want to edit the data '([^']*)' and '([^']*)' in the managelistings")]
+        public void WhenIWantToEditTheDataAndInTheManagelistings(string p0, string p1)
         {
-            var Managelistings = new Managelistings();
+            Managelistings Managelistings = new Managelistings();
             PageFactory.InitElements(driver, Managelistings);
-            Managelistings.EditSkillfunction();
+            Managelistings.EditSkillfunction(p0, p1);
         }
 
-        [Then(@"\[The managelistings data should be edited successfully]")]
-        public void ThenTheManagelistingsDataShouldBeEditedSuccessfully()
+        [Then(@"The managelistings data  '([^']*)'and '([^']*)' should be edited successfully")]
+        public void ThenTheManagelistingsDataAndShouldBeEditedSuccessfully(string p0, string p1)
         {
-            Managelistings ManagelistingsObj = new Managelistings();
+            Managelistings ManagelistingsObj = new Managelistings(); 
             PageFactory.InitElements(driver, ManagelistingsObj);
-
             string newEditedskill = ManagelistingsObj.GetEditedSkill(driver);
-            Assert.That(newEditedskill == "Test Analyst", "Actual Edited skill and Expected Edited skill does not match");
-            driver.Close();        
+            string newskillexchangetag = ManagelistingsObj.Getskilexchangetag(driver);
+
+            Assert.That(newEditedskill == p0, "Actual Edited skill and Expected Edited skill does not match");
+            Assert.That(newskillexchangetag == p1, "Actual Edited skillexchangetag and Expected Edited skillexchangetag does not match");
+            driver.Close();
         }
 
+       
+       
 
-        [Given(@"\[I log in to the MAR QA website to Delete details in the managelistings]")]
+        [Given(@"I log in to the MAR QA website to Delete details in the managelistings")]
         public void GivenILogInToTheMARQAWebsiteToDeleteDetailsInTheManagelistings()
         {
-            //Open chromedriver
-            driver = new ChromeDriver();
+            driver = new ChromeDriver(); 
             driver.Manage().Window.Maximize();
-
-            //Login page object initializing and defining
-            var Loginpage = new Loginpage();
+            Loginpage Loginpage = new Loginpage();
             PageFactory.InitElements(driver, Loginpage);
             Loginpage.Loginsteps();
         }
 
-        [When(@"\[I want to Delete the data in the managelistings]")]
+        [When(@"I want to Delete the data in the managelistings")]
         public void WhenIWantToDeleteTheDataInTheManagelistings()
         {
-            var Managelistings = new Managelistings();
+            Managelistings Managelistings = new Managelistings(); 
             PageFactory.InitElements(driver, Managelistings);
             Managelistings.DeleteSkillsFunction();
         }
 
-        [Then(@"\[The managelistings data should be Deleted successfully]")]
+        [Then(@"The managelistings data should be Deleted successfully")]
         public void ThenTheManagelistingsDataShouldBeDeletedSuccessfully()
         {
-            Managelistings ManagelistingsObj = new Managelistings();
+            Managelistings ManagelistingsObj = new Managelistings(); 
             PageFactory.InitElements(driver, ManagelistingsObj);
-
             string newdeletedTitle = ManagelistingsObj.GetdeletedSkill(driver);
             Assert.That(newdeletedTitle != "Test Analyst", "Actual deletedTitle and Expected deletedTitle does not match");
             driver.Close();
