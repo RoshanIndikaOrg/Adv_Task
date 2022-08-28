@@ -85,25 +85,25 @@ namespace MARS_ADV_Task.Pages
         [FindsBy(How = How.CssSelector, Using = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > form > div.ui.bottom.attached.tab.segment.tooltip-target.active > div > div.twelve.wide.column.scrollTable > div > table > tbody:last-child > tr > td:nth-child(5)")]
         public IWebElement actualYear { get; set; }
 
-        public string GetUniversity(IWebDriver driver)
+        public string GetUniversity()
 
         {
             return actualUniversity.Text;
         }
 
-        public string GetCountry(IWebDriver driver)
+        public string GetCountry()
 
         {
             return actualCountry.Text;
         }
 
-        public string GetDegree(IWebDriver driver)
+        public string GetDegree()
 
         {
             return actualDegree.Text;
         }
 
-        public string GetYear(IWebDriver driver)
+        public string GetYear()
 
         {
             return actualYear.Text;

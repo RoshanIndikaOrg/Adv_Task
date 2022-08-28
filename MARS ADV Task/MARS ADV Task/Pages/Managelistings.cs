@@ -102,7 +102,7 @@ namespace MARS_ADV_Task.Pages
         string actualTitlex = "#service-detail-section > div.ui.container > div > div:nth-child(1) > div > div > div > div";
         string actualskilexchangetagx = "#service-detail-section > div.ui.container > div > div:nth-child(2) > div.ten.wide.column > div.ui.fluid.card > div.content > div:nth-child(5) > div > div > div:nth-child(4) > div.ui.list > div > div > div.description > span";
         string deletedTitlex = "#listing-management-section > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > table > tbody > tr:nth-child(1) > td:nth-child(3)";
-        public string GetEditedSkill(IWebDriver driver)
+        public string GetEditedSkill()
         {
             Wait.WaitForclicable(driver, "CssSelector", detailBtnX , 2);
             detailBtn.Click();
@@ -112,7 +112,7 @@ namespace MARS_ADV_Task.Pages
 
         }
 
-        public string Getskilexchangetag(IWebDriver driver)
+        public string Getskilexchangetag()
         {
             jse.ExecuteScript("window.scrollBy(0,800)");
 
@@ -123,7 +123,7 @@ namespace MARS_ADV_Task.Pages
 
 
 
-        public string GetdeletedSkill(IWebDriver driver)
+        public string GetdeletedSkill()
         {
             Wait.WaitForvisible(driver, "CssSelector", deletedTitlex, 2);
             return deletedTitle.Text;

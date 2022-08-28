@@ -203,7 +203,7 @@ namespace MARS_ADV_Task.Pages
         public IWebElement actualCategory { get; set; }
 
         string actualCategoryx = "#listing-management-section > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > table > tbody > tr:nth-child(1) > td:nth-child(2)";
-        public string GetCategory(IWebDriver driver)
+        public string GetCategory()
         {
             Wait.WaitForvisible(driver, "CssSelector", actualCategoryx , 2);
             return actualCategory.Text;

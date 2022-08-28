@@ -60,15 +60,15 @@ namespace MARS_ADV_Task.Pages
         public IWebElement actualyear { get; set; }
 
 
-        public string GetCertification(IWebDriver driver)
+        public string GetCertification()
         {
             return actualCertificate.Text;
         }
-        public string Getcertified_from(IWebDriver driver)
+        public string Getcertified_from()
         {
             return actualcertified_from.Text;
         }
-        public string Getyear(IWebDriver driver)
+        public string Getyear()
         {
             return actualyear.Text;
         }

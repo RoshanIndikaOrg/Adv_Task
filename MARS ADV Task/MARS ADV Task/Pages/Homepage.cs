@@ -3,7 +3,7 @@ using SeleniumExtras.PageObjects;
 
 namespace MARS_ADV_Task.Pages
 {
-    internal class Homepage
+    public class Homepage
     {
         [FindsBy(How = How.XPath, Using = "//*[@id='home']/div/div/div[1]/div/a")]
         public IWebElement signInButton { get; set; }

@@ -6,7 +6,7 @@ using System.Threading;
 namespace MARS_ADV_Task.Pages
 {
     internal class Profilepageloc : Commondriver
-    {
+    {       
         IJavaScriptExecutor jse = (IJavaScriptExecutor)driver;
 
         [FindsBy(How = How.XPath, Using = "/html/body/div[1]/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[2]/div/span/i")]
@@ -75,7 +75,7 @@ namespace MARS_ADV_Task.Pages
 
         string actualavailabilityx = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.four.wide.column > div > div > div > div > div > div.extra.content > div > div:nth-child(2) > div > span";
 
-        public string Getavailability(IWebDriver driver)
+        public string Getavailability()
         {
             Wait.WaitForvisible(driver, "CssSelector", actualavailabilityx , 2);
             return actualavailability.Text;

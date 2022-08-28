@@ -33,7 +33,7 @@ namespace MARS_ADV_Task.Pages
         }
 
         //Get the Description
-        public string GetDescription(IWebDriver driver)
+        public string GetDescription()
         {
             return actualDescription.Text;
         }
