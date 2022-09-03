@@ -7,7 +7,7 @@ namespace MARS_ADV_Task.Pages
 {
     internal class ManageCertification : Commondriver
     {
-        //Identify Certification Tab 
+        //Identify Certification Tab            
         [FindsBy(How = How.CssSelector, Using = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > form > div.ui.top.attached.tabular.menu > a:nth-child(4)")]
         public IWebElement certificationTab { get; set; }
 
@@ -34,23 +34,17 @@ namespace MARS_ADV_Task.Pages
         [FindsBy(How = How.CssSelector, Using = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > form > div.ui.bottom.attached.tab.segment.tooltip-target.active > div.row > div.twelve.wide.column.scrollTable > div > div > div.five.wide.field > input.ui.teal.button")]
         public IWebElement certificationAddButton { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[1]/a")]
-        public IWebElement errMsg { get; set; }
-
-
-
-        public void AddCertification()
+        string xCertificationTab = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > form > div.ui.top.attached.tabular.menu > a:nth-child(4)";
+        public void AddCertification(string certificate, string certified_from, string year)
         {
 
-            Wait.WaitForvisible(driver, "CssSelector", "#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > form > div.ui.top.attached.tabular.menu > a:nth-child(4)", 2);
+            Wait.WaitForvisible(driver, "CssSelector", xCertificationTab, 2);
             certificationTab.Click();
             addNewCertification.Click();
-            addCertificationAward.SendKeys("Diploma");
-            certifiedFrom.SendKeys("AUT");
-            yearDropdown.Click();
-            yearOption.Click();
+            addCertificationAward.SendKeys(certificate);
+            certifiedFrom.SendKeys(certified_from);
+            yearDropdown.SendKeys(year);
             certificationAddButton.Click();
-            //errMsg.Click();
             Thread.Sleep(2000);
 
         }
@@ -58,9 +52,25 @@ namespace MARS_ADV_Task.Pages
         //Identify and Get the Certification
         [FindsBy(How = How.CssSelector, Using = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > form > div.ui.bottom.attached.tab.segment.tooltip-target.active > div.row > div.twelve.wide.column.scrollTable > div > table > tbody:last-child > tr > td:nth-child(1)")]
         public IWebElement actualCertificate { get; set; }
-        public string GetCertification(IWebDriver driver)
+
+        [FindsBy(How = How.CssSelector, Using = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > form > div.ui.bottom.attached.tab.segment.tooltip-target.active > div.row > div.twelve.wide.column.scrollTable > div > table > tbody:last-child > tr > td:nth-child(2)")]
+        public IWebElement actualcertified_from { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > form > div.ui.bottom.attached.tab.segment.tooltip-target.active > div.row > div.twelve.wide.column.scrollTable > div > table > tbody:last-child > tr > td:nth-child(3)")]
+        public IWebElement actualyear { get; set; }
+
+
+        public string GetCertification()
         {
             return actualCertificate.Text;
+        }
+        public string Getcertified_from()
+        {
+            return actualcertified_from.Text;
+        }
+        public string Getyear()
+        {
+            return actualyear.Text;
         }
     }
 

@@ -1,23 +1,34 @@
-﻿using OpenQA.Selenium;
-
+﻿using MARS_ADV_Task.Pages;
+using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using SeleniumExtras.PageObjects;
+using TechTalk.SpecFlow;
 
 namespace MARS_ADV_Task.Utilities
 {
+    [Binding]
     public class Commondriver
     {
+
         public static IWebDriver driver;
 
-    }
-
-    public class Driver
-    {
-        public static IWebDriver driver;
-
-        public IWebDriver _driver;
-
-        public Driver(IWebDriver driver)
+        [BeforeScenario]
+        public static void LoginFunction()
         {
-            this._driver = driver;
+            driver = new ChromeDriver();
         }
+
+        [AfterScenario]
+        public static void AfterTestRun()
+        {
+           driver.Close();
+           driver.Dispose();
+        }
+
     }
 }
+    
+
+    
+

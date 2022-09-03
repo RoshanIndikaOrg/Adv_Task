@@ -10,6 +10,7 @@ namespace MARS_ADV_Task.Pages
 {
     internal class ShareSkills : Commondriver
     {
+
         IJavaScriptExecutor jse = (IJavaScriptExecutor)driver;
 
         [FindsBy(How = How.CssSelector, Using = "#account-profile-section > div > section.nav-secondary > div > div.right.item > a")]
@@ -118,28 +119,30 @@ namespace MARS_ADV_Task.Pages
         [FindsBy(How = How.XPath, Using = "/html/body/div[1]/a")]
         public IWebElement errormsg { get; set; }
 
+        string shareSkillbuttonx = "#account-profile-section > div > section.nav-secondary > div > div.right.item > a";
+        string categoryOptionx = "#service-listing-section > div.ui.container > div > form > div:nth-child(3) > div.twelve.wide.column > div > div:nth-child(1) > select > option:nth-child(7)";
+        string subCategoryOptionx = "#service-listing-section > div.ui.container > div > form > div:nth-child(3) > div.twelve.wide.column > div > div:nth-child(2) > div:nth-child(1) > select > option:nth-child(5)";
+        string tagsBoxx = "#service-listing-section > div.ui.container > div > form > div:nth-child(4) > div.twelve.wide.column > div > div > div > div > input";
+        string sundayStarttimex = "#service-listing-section > div.ui.container > div > form > div:nth-child(7) > div.twelve.wide.column > div > div:nth-child(2) > div:nth-child(2) > input[type=time]";
+        string sundayEndtimex = "#service-listing-section > div.ui.container > div > form > div:nth-child(7) > div.twelve.wide.column > div > div:nth-child(2) > div:nth-child(3) > input[type=time]";
+
 
         public void ManageSkills()
         {
 
-            Wait.WaitForclicable(driver, "CssSelector", "#account-profile-section > div > section.nav-secondary > div > div.right.item > a", 4);
+            Wait.WaitForclicable(driver, "CssSelector", shareSkillbuttonx , 4);
             shareSkillbutton.Click();
 
-            Wait.WaitForclicable(driver, "Name", "title", 2);
             titleBox.SendKeys("Programar");
             descriptionBox.SendKeys("I can analyze your system and can give you the best IT solution");
 
             categoryDropdownbox.Click();
-            Wait.WaitForclicable(driver, "CssSelector", "#service-listing-section > div.ui.container > div > form > div:nth-child(3) > div.twelve.wide.column > div > div:nth-child(1) > select > option:nth-child(7)", 2);
             categoryOption.Click();
-
             subCategorybox.Click();
-            Wait.WaitForclicable(driver, "CssSelector", "#service-listing-section > div.ui.container > div > form > div:nth-child(3) > div.twelve.wide.column > div > div:nth-child(2) > div:nth-child(1) > select > option:nth-child(5)", 2);
             subCategoryOption.Click();
 
             jse.ExecuteScript("window.scrollBy(0,500)");
 
-            Wait.WaitForclicable(driver, "CssSelector", "#service-listing-section > div.ui.container > div > form > div:nth-child(4) > div.twelve.wide.column > div > div > div > div > input", 2);
             tagsBox.Click();
             tagsBox.SendKeys("C#");
             tagsBox.SendKeys(Keys.Enter);
@@ -160,19 +163,11 @@ namespace MARS_ADV_Task.Pages
             startDateBox.SendKeys("06/12/2022");
             endDateBox.SendKeys("13/12/2022");
 
-            Wait.WaitForvisible(driver, "CssSelector", "#service-listing-section > div.ui.container > div > form > div:nth-child(7) > div.twelve.wide.column > div > div:nth-child(2) > div:nth-child(2) > input[type=time]", 2);
             sundayStarttime.SendKeys("09:00am");
-            Wait.WaitForvisible(driver, "CssSelector", "#service-listing-section > div.ui.container > div > form > div:nth-child(7) > div.twelve.wide.column > div > div:nth-child(2) > div:nth-child(3) > input[type=time]", 2);
             sundayEndtime.SendKeys("15:00pm");
-
-            Wait.WaitForvisible(driver, "CssSelector", "#service-listing-section > div.ui.container > div > form > div:nth-child(7) > div.twelve.wide.column > div > div:nth-child(3) > div:nth-child(2) > input[type=time]", 2);
             mondayStarttime.SendKeys("10:00am");
-            Wait.WaitForvisible(driver, "CssSelector", "#service-listing-section > div.ui.container > div > form > div:nth-child(7) > div.twelve.wide.column > div > div:nth-child(3) > div:nth-child(3) > input[type=time]", 2);
             mondayEndtime.SendKeys("16:00pm");
-
-            Wait.WaitForvisible(driver, "CssSelector", "#service-listing-section > div.ui.container > div > form > div:nth-child(7) > div.twelve.wide.column > div > div:nth-child(5) > div:nth-child(2) > input[type=time]", 2);
             wednesdayStarttime.SendKeys("07:00am");
-            Wait.WaitForvisible(driver, "CssSelector", "#service-listing-section > div.ui.container > div > form > div:nth-child(7) > div.twelve.wide.column > div > div:nth-child(5) > div:nth-child(3) > input[type=time]", 2);
             wednesdayEndtime.SendKeys("13:30pm");
 
             jse.ExecuteScript("window.scrollBy(0,800)");
@@ -180,9 +175,7 @@ namespace MARS_ADV_Task.Pages
             skillTradeRadioBtn.ToList();
             skillTradeRadioBtn[0].Click();
 
-            Wait.WaitForclicable(driver, "CssSelector", "#service-listing-section > div.ui.container > div > form > div:nth-child(8) > div:nth-child(4) > div > div > div > div > div > input", 2);
             skillExchangeTag.Click();
-
             skillExchangeTag.SendKeys("Designing");
             skillExchangeTag.SendKeys(Keys.Enter);
             skillExchangeTag.SendKeys("Advertising");
@@ -198,12 +191,9 @@ namespace MARS_ADV_Task.Pages
              Thread.Sleep(1000);
              autoIt.Send("{ Enter}");
              Thread.Sleep(1000);*/
-            
-
+         
             activeRadioBtn.ToList();
             activeRadioBtn[1].Click();
-
-            Wait.WaitForclicable(driver, "CssSelector", "#service-listing-section > div.ui.container > div > form > div.ui.vertically.padded.right.aligned.grid > div > input.ui.teal.button", 2);
             saveButton.Click();
 
         }
@@ -212,9 +202,10 @@ namespace MARS_ADV_Task.Pages
         [FindsBy(How = How.CssSelector, Using = "#listing-management-section > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > table > tbody > tr:nth-child(1) > td:nth-child(2)")]
         public IWebElement actualCategory { get; set; }
 
-        public string GetCategory(IWebDriver driver)
+        string actualCategoryx = "#listing-management-section > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > table > tbody > tr:nth-child(1) > td:nth-child(2)";
+        public string GetCategory()
         {
-            Wait.WaitForvisible(driver, "CssSelector", "#listing-management-section > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > table > tbody > tr:nth-child(1) > td:nth-child(2)", 2);
+            Wait.WaitForvisible(driver, "CssSelector", actualCategoryx , 2);
             return actualCategory.Text;
         }
 

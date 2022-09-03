@@ -19,25 +19,21 @@ namespace MARS_ADV_Task.Pages
         [FindsBy(How = How.CssSelector, Using = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > div > div > div > span")]
         public IWebElement actualDescription { get; set; }
 
-      //  [FindsBy(How = How.XPath, Using = "/html/body/div[1]/a")]
-      //  public IWebElement errMsg { get; set; }
-
-
+        string xDescriptionBtn = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > div > div > div > h3 > span";
         public void AddDescription()
         {
-            Wait.WaitForclicable(driver, "CssSelector", "#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > div > div > div > h3 > span", 2);
+            Wait.WaitForclicable(driver, "CssSelector", xDescriptionBtn, 2);
             descriptionBtn.Click();
             Thread.Sleep(1000);
             descriptionBox.Clear();
             descriptionBox.SendKeys("Design expertise who creates solutions");
             saveBtn.Click();
-           // errMsg.Click();
             Thread.Sleep(1000);
 
         }
 
         //Get the Description
-        public string GetDescription(IWebDriver driver)
+        public string GetDescription()
         {
             return actualDescription.Text;
         }

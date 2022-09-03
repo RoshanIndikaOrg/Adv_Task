@@ -27,16 +27,16 @@ namespace MARS_ADV_Task.Pages
         [FindsBy(How = How.CssSelector, Using = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > form > div.ui.bottom.attached.tab.segment.tooltip-target.active > div > div.twelve.wide.column.scrollTable > div > div > div.six.wide.field > input.ui.teal.button")]
         public IWebElement addButton { get; set; }
 
-        
+
+        string xAddnewbtn = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > form > div.ui.bottom.attached.tab.segment.active.tooltip-target > div > div.twelve.wide.column.scrollTable > div > table > thead > tr > th.right.aligned > div";
 
 
-
-        public void addLanguage()
+        public void addLanguage(string Language, string Level)
         {
-            Wait.WaitForclicable(driver, "CssSelector", "#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > form > div.ui.bottom.attached.tab.segment.active.tooltip-target > div > div.twelve.wide.column.scrollTable > div > table > thead > tr > th.right.aligned > div", 2);
+            Wait.WaitForclicable(driver, "CssSelector", xAddnewbtn , 2);
             addNewButton.Click();
-            addNewLanguage.SendKeys("Spanish");
-            languageLevelDropdown.SendKeys("Basic");
+            addNewLanguage.SendKeys(Language);
+            languageLevelDropdown.SendKeys(Level);
             addButton.Click();
             Thread.Sleep(2000);
             
@@ -45,11 +45,18 @@ namespace MARS_ADV_Task.Pages
         //Identify and initializing actual Language 
         [FindsBy(How = How.CssSelector, Using = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > form > div.ui.bottom.attached.tab.segment.active.tooltip-target > div > div.twelve.wide.column.scrollTable > div > table > tbody:last-child > tr > td:nth-child(1)")]
         public IWebElement actualLanguage { get; set; }
+        
+        [FindsBy(How = How.CssSelector, Using = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > form > div.ui.bottom.attached.tab.segment.active.tooltip-target > div > div.twelve.wide.column.scrollTable > div > table > tbody:last-child > tr > td:nth-child(2)")]
+        public IWebElement actualLevel { get; set; }
 
-
-        public string GetLanguage(IWebDriver driver)
+        public string GetLanguage()
         {
             return actualLanguage.Text;
+        }
+
+        public string GetlanguageLevelDropdown()
+        {
+            return actualLevel.Text;
         }
     }
 }

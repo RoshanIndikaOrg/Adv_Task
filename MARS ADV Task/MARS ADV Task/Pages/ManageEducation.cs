@@ -55,37 +55,58 @@ namespace MARS_ADV_Task.Pages
         [FindsBy(How = How.CssSelector, Using = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > form > div.ui.bottom.attached.tab.segment.tooltip-target.active > div > div.twelve.wide.column.scrollTable > div > div > div:nth-child(3) > div > input.ui.teal.button")]
         public IWebElement addEducationbutton { get; set; }
 
-       // [FindsBy(How = How.XPath, Using = "/html/body/div[1]/a")]
-      //  public IWebElement errMsg { get; set; }
-
-
-        public void addEducation()
+        string xEducationTab = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > form > div.ui.top.attached.tabular.menu > a:nth-child(3)";
+        public void addEducation(string country, string university, string degree, string year)
         {
 
-            Wait.WaitForclicable(driver, "CssSelector", "#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > form > div.ui.top.attached.tabular.menu > a:nth-child(3)", 2);
+            Wait.WaitForclicable(driver, "CssSelector",xEducationTab, 2);
             educationTab.Click();
             educationAddnewbutton.Click();
-            collegeUniName.SendKeys("Otago");
-            countryDropdown.Click();
-            countryOption.Click();
+            collegeUniName.SendKeys(university);
+            countryDropdown.SendKeys(country);
             titleDropdown.Click();
             titleOption.Click();
-            degreeQualification.SendKeys("Degree");
-            yearOfGraduationdropdown.Click();
-            yearOfGraduationoption.Click();
+            degreeQualification.SendKeys(degree);
+            yearOfGraduationdropdown.SendKeys(year);
             addEducationbutton.Click();
-           // errMsg.Click();
             Thread.Sleep(2000);
 
         }
         //Identify the new Education 
         [FindsBy(How = How.CssSelector, Using = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > form > div.ui.bottom.attached.tab.segment.tooltip-target.active > div > div.twelve.wide.column.scrollTable > div > table > tbody:last-child > tr > td:nth-child(2)")]
-        public IWebElement actualEducationUni { get; set; }
+        public IWebElement actualUniversity { get; set; }
 
-        public string GetEducation(IWebDriver driver)
+        [FindsBy(How = How.CssSelector, Using = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > form > div.ui.bottom.attached.tab.segment.tooltip-target.active > div > div.twelve.wide.column.scrollTable > div > table > tbody:last-child > tr > td:nth-child(1)")]
+        public IWebElement actualCountry { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > form > div.ui.bottom.attached.tab.segment.tooltip-target.active > div > div.twelve.wide.column.scrollTable > div > table > tbody:last-child > tr > td:nth-child(4)")]
+        public IWebElement actualDegree { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > form > div.ui.bottom.attached.tab.segment.tooltip-target.active > div > div.twelve.wide.column.scrollTable > div > table > tbody:last-child > tr > td:nth-child(5)")]
+        public IWebElement actualYear { get; set; }
+
+        public string GetUniversity()
 
         {
-            return actualEducationUni.Text;
+            return actualUniversity.Text;
+        }
+
+        public string GetCountry()
+
+        {
+            return actualCountry.Text;
+        }
+
+        public string GetDegree()
+
+        {
+            return actualDegree.Text;
+        }
+
+        public string GetYear()
+
+        {
+            return actualYear.Text;
         }
     }
 }
